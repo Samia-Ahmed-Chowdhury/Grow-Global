@@ -53,17 +53,7 @@ async function run() {
     const postCollection = database.collection('post')
 
 
-    //jwt API..........
-    app.post('/jwt', (req, res) => {
-      const user = req.body
-      // console.log(user)
-      const token = jwt.sign(user, process.env.ACCESS_SECRET_TOKEN, { expiresIn: '1hr' })
-      // console.log(token)
-      res.send({ token })
-    })
-
-
-    app.get('/posts', async (req, res) => {
+    app.get('/posts',verifyJWT, async (req, res) => {
       const result = await postCollection.find().sort({ date: -1 }).toArray()
       res.send(result)
     })
@@ -97,6 +87,15 @@ async function run() {
       res.send(result)
     })
 
+
+    //jwt API..........
+    app.post('/jwt', (req, res) => {
+      const user = req.body
+      // console.log(user)
+      const token = jwt.sign(user, process.env.ACCESS_SECRET_TOKEN, { expiresIn: '1hr' })
+      // console.log(token)
+      res.send({ token })
+    })
 
 
     // Send a ping to confirm a successful connection
