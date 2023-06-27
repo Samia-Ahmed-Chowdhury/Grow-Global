@@ -26,7 +26,8 @@
     "react-router-dom": "^6.11.0",
     "react-simple-captcha": "^9.0.2",
     "sort-by": "^1.2.0",
-    "sweetalert2": "^11.7.5"
+    "sweetalert2": "^11.7.5",
+    "react-loader-spinner": "^5.3.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",

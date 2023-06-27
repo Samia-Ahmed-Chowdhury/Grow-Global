@@ -33,6 +33,7 @@
 <br/>
 
 ## ****Process ****
+
 - At first, I created a Login and Register Page.
 - Then, I used Firebase for authentication.
 - I protected the home page so that only logged-in users can access it.
@@ -46,15 +47,21 @@
 <br/>
 
 ## ****Steps for locally run ****
+
 ### `Client side`
 In the project directory, you can run:
 - At first git clone the folder.
 - Then open terminal, go to  `Grow-Global` folder as it is client side folder.I used React for client side code.
-- then open terminal in `Grow-Global` and ### `npm i -f` run this command.
-- Then run ### `npm run dev` ## ****make sure you provide your imgbb key and firebases keys otherwise it'll get an error. I have my keys in .env file as an developer is not good practise to share curisal information into public.    ****
+- then open terminal in `Grow-Global` and  `npm i -f` run this command.
+- Then run `npm run dev` 
+
+## **make sure you provide your imgbb key and firebases keys otherwise it'll get an error. I have my keys in .env file as an developer is not good practise to share curisal information into public.**
+
 <br/>
 
 ### `Server side`
  - Go to  `Grow-Global` folder as it is server side folder.I used React for client side code.
-- then open terminal in `Grow-Global-Server` and ### `npm i` run this command.
-- Then run ### `npm start` ## ****make sure you provide your own mongodb database key and firebases keys and access token otherwise it'll get an error. I have my keys in .env file as an developer is not good practise to share curisal information into public.    ****
+- then open terminal in `Grow-Global-Server` and  `npm i` run this command.
+- Then run `npm start` 
+
+## **make sure you provide your own mongodb database key and firebases keys and access token otherwise it'll get an error. I have my keys in .env file as an developer is not good practise to share curisal information into public.**
