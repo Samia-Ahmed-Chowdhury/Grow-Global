@@ -1,5 +1,4 @@
 export const imageUpload=async(image)=>{
-    console.log(image)
    if(image){
     const formData=new FormData()
     formData.append('image',image)

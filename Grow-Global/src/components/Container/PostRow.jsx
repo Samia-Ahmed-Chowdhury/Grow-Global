@@ -7,7 +7,7 @@ import { AiFillDelete } from 'react-icons/ai';
 import UpdateModal from './UpdateModal'
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../provider/AuthProvider';
-import SearchBox from './SearchBox';
+import moment from 'moment';
 
 function PostRow() {
   const { userName, userEmail } = useContext(AuthContext)
@@ -15,6 +15,7 @@ function PostRow() {
   const [axiosSecure] = useAxiosSecure()
   const [isOpen, setIsOpen] = useState(false)
   const [postInfo, setPostInfo] = useState({})
+  const [date, setDate] = useState('')
 
   function closeModal() {
     setIsOpen(false)
@@ -52,13 +53,19 @@ function PostRow() {
     })
   }
 
-  return (
-    <div className='lg:w-1/2 lg:mx-auto mx-5'>
-      <SearchBox />
+  const calculateTimeDifference = (storedDate) => {
+    const currentTime = new Date();
+    const timeDifference = moment(currentTime).diff(storedDate);
+    return moment.duration(timeDifference).humanize();
+  };
 
+
+
+  return (
+    <>
       {
         allPostsData && Array.isArray(allPostsData) && allPostsData.length > 0 ? (
-          <div>
+          <div className='lg:w-1/2 lg:mx-auto mx-5'>
             {
               allPostsData.map(post => (
                 <div key={post._id} className='card shadow-lg mb-5'>
@@ -80,11 +87,12 @@ function PostRow() {
                       </label>
                       <p className='font-bold text-2xl'>{post.userName}</p>
                     </div>
-                    <h1 className='text-gray-700 text-xl'>{post.msg}</h1>
+                    <h1 className='text-gray-800 text-xl'>{post.msg}</h1>
                     {
                       post.postImage &&
                       <img className='w-96 h-56 mt-4' src={post?.postImage} alt="image" />
                     }
+                    <p className='text-gray-500 text-sm'> {calculateTimeDifference(new Date(post?.date))} ago</p>
                   </div>
                 </div>
               ))
@@ -95,7 +103,8 @@ function PostRow() {
           :
           <h1 className='text-center mt-16 font-bold'>Not class Data available</h1>
       }
-    </div>
+
+    </>
   )
 }
 

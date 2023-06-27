@@ -10,16 +10,16 @@ function CreatePost() {
     const [axiosSecure] = useAxiosSecure()
 
     const { userName, userEmail,photoUrl } = useContext(AuthContext)
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit,reset  } = useForm();
     const [, refetchaAllPostsInfo] = useGetAllPosts()
-    const onSubmit = data => {
 
+    const onSubmit = data => {
         console.log(data)
         const { msg } = data;
         //image upload
         const image = data.img[0]
             imageUpload(image).then(imgLink => {
-                const savePost = { userName, userEmail,userImage:photoUrl, postImage:imgLink, msg }
+                const savePost = { userName, userEmail,userImage:photoUrl, postImage:imgLink, msg,     date: new Date() }
                 console.log(savePost)
                 axiosSecure.post('/add_post', savePost)
                     .then(data => {
@@ -30,12 +30,11 @@ function CreatePost() {
                                 'Added Successfully (^_^)',
                                 'success'
                             )
+                            reset();
                             refetchaAllPostsInfo()
                         }
                     })
             })
-
-
     }
 
     return (

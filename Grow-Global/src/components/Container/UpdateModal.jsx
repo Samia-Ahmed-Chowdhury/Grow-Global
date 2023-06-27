@@ -20,6 +20,9 @@ export default function UpdateModal({ closeModal, isOpen, postInfo }) {
         const { msg } = data;
 
         imageUpload(image).then(imgLink => {
+            if(!imgLink){
+               imgLink=postImage
+            }
             const updateItem = { userName, userEmail,userImage:photoUrl, postImage: imgLink, msg }
             axiosSecure.put(`/update_post/${_id}`, updateItem)
                 .then(res => {

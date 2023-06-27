@@ -64,9 +64,7 @@ async function run() {
 
 
     app.get('/posts', async (req, res) => {
-      const cursor = postCollection.find()
-      const result = await cursor.toArray()
-      // console.log(result)
+      const result = await postCollection.find().sort({ date: -1 }).toArray()
       res.send(result)
     })
 
@@ -99,20 +97,7 @@ async function run() {
       res.send(result)
     })
 
-    //search some data
-    app.get('/get_search_post', verifyJWT, async (req, res) => {
-      const decoded = req.decoded
-      if (!decoded.email) {
-        res.status(403).send('forbidden access!!')
-      }
-      console.log('line 119', decoded)
-      let query = {}
-      if (req.query.search) {
-        query = { msg: req.query.search }
-      }
-      const result = await postCollection.find(query).toArray()
-      res.send(result)
-    })
+
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
